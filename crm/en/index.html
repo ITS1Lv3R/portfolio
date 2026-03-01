@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM — Demo | iDev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="crm-header">
+    <a href="https://idev.team/en/" class="crm-header__back">← Portfolio</a>
+    <a href="../" class="crm-header__back" style="margin-left: 12px;">RU</a>
+    <h1 class="crm-header__title">iDev CRM</h1>
+    <nav class="crm-nav">
+      <button type="button" class="crm-nav__item is-active" data-section="dashboard">Dashboard</button>
+      <button type="button" class="crm-nav__item" data-section="clients">Clients</button>
+      <button type="button" class="crm-nav__item" data-section="pipeline">Pipeline</button>
+      <button type="button" class="crm-nav__item" data-section="tasks">Tasks</button>
+      <button type="button" class="crm-nav__item" data-section="employees">Team</button>
+    </nav>
+  </header>
+
+  <main class="crm-main">
+    <section id="section-dashboard" class="crm-section is-active">
+      <div class="dashboard-cards">
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-clients">0</span>
+          <span class="dashboard-card__label">Clients</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-leads">0</span>
+          <span class="dashboard-card__label">Leads</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-negotiation">0</span>
+          <span class="dashboard-card__label">In progress</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-deals">0</span>
+          <span class="dashboard-card__label">Deals</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-tasks">0</span>
+          <span class="dashboard-card__label">Active tasks</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-total-amount">0</span>
+          <span class="dashboard-card__label">Deal sum</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-employees">0</span>
+          <span class="dashboard-card__label">Team</span>
+        </div>
+      </div>
+      <div class="dashboard-charts">
+        <div class="dashboard-chart-card">
+          <h2>Deals by stage</h2>
+          <div class="dashboard-chart-wrap">
+            <canvas id="chart-pipeline" width="300" height="220"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-chart-card">
+          <h2>Amount by stage</h2>
+          <div class="dashboard-chart-wrap">
+            <canvas id="chart-amounts" width="300" height="220"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-recent">
+        <h2>Recent clients</h2>
+        <div id="dashboard-recent-list" class="dashboard-recent__list"></div>
+      </div>
+    </section>
+
+    <section id="section-clients" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Clients</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-client">+ Add client</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Company</th>
+              <th>Contacts</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="clients-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="section-pipeline" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Deal pipeline</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-deal">+ Add deal</button>
+      </div>
+      <div class="pipeline" id="pipeline-board">
+        <div class="pipeline-column" data-stage="lead">
+          <h3>Lead</h3>
+          <div class="pipeline-column__cards" id="column-lead"></div>
+        </div>
+        <div class="pipeline-column" data-stage="negotiation">
+          <h3>Negotiation</h3>
+          <div class="pipeline-column__cards" id="column-negotiation"></div>
+        </div>
+        <div class="pipeline-column" data-stage="deal">
+          <h3>Deal</h3>
+          <div class="pipeline-column__cards" id="column-deal"></div>
+        </div>
+        <div class="pipeline-column" data-stage="done">
+          <h3>Done</h3>
+          <div class="pipeline-column__cards" id="column-done"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-tasks" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Tasks</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-task">+ Add task</button>
+      </div>
+      <div class="tasks-list" id="tasks-list"></div>
+    </section>
+
+    <section id="section-employees" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Team & access</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-employee">+ Add member</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Permissions</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="employees-tbody"></tbody>
+        </table>
+      </div>
+      <div class="roles-help">
+        <h3>Roles</h3>
+        <ul>
+          <li><strong>Admin</strong> — full access: clients, deals, tasks, team.</li>
+          <li><strong>Manager</strong> — create and edit clients, deals, tasks. No team section.</li>
+          <li><strong>Viewer</strong> — view-only for clients, deals, tasks.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+    <div class="modal">
+      <button type="button" class="modal__close" aria-label="Close">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app-en.js"></script>
+</body>
+</html>

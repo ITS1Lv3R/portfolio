@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM — Демо | iDev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="crm-header">
+    <a href="https://idev.team/" class="crm-header__back">← Портфолио</a>
+    <a href="en/" class="crm-header__back" style="margin-left: 12px;">EN</a>
+    <h1 class="crm-header__title">iDev CRM</h1>
+    <nav class="crm-nav">
+      <button type="button" class="crm-nav__item is-active" data-section="dashboard">Дашборд</button>
+      <button type="button" class="crm-nav__item" data-section="clients">Клиенты</button>
+      <button type="button" class="crm-nav__item" data-section="pipeline">Воронка</button>
+      <button type="button" class="crm-nav__item" data-section="tasks">Задачи</button>
+      <button type="button" class="crm-nav__item" data-section="employees">Сотрудники</button>
+    </nav>
+  </header>
+
+  <main class="crm-main">
+    <!-- Дашборд -->
+    <section id="section-dashboard" class="crm-section is-active">
+      <div class="dashboard-cards">
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-clients">0</span>
+          <span class="dashboard-card__label">Клиентов</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-leads">0</span>
+          <span class="dashboard-card__label">Лиды</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-negotiation">0</span>
+          <span class="dashboard-card__label">В работе</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-deals">0</span>
+          <span class="dashboard-card__label">Сделки</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-tasks">0</span>
+          <span class="dashboard-card__label">Активных задач</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-total-amount">0</span>
+          <span class="dashboard-card__label">Сумма сделок (₽)</span>
+        </div>
+        <div class="dashboard-card">
+          <span class="dashboard-card__value" id="stat-employees">0</span>
+          <span class="dashboard-card__label">Сотрудников</span>
+        </div>
+      </div>
+      <div class="dashboard-charts">
+        <div class="dashboard-chart-card">
+          <h2>Сделки по этапам</h2>
+          <div class="dashboard-chart-wrap">
+            <canvas id="chart-pipeline" width="300" height="220"></canvas>
+          </div>
+        </div>
+        <div class="dashboard-chart-card">
+          <h2>Сумма по этапам (₽)</h2>
+          <div class="dashboard-chart-wrap">
+            <canvas id="chart-amounts" width="300" height="220"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="dashboard-recent">
+        <h2>Последние клиенты</h2>
+        <div id="dashboard-recent-list" class="dashboard-recent__list"></div>
+      </div>
+    </section>
+
+    <!-- Клиенты -->
+    <section id="section-clients" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Клиенты</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-client">+ Добавить клиента</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Имя</th>
+              <th>Компания</th>
+              <th>Контакты</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="clients-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Воронка -->
+    <section id="section-pipeline" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Воронка сделок</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-deal">+ Добавить сделку</button>
+      </div>
+      <div class="pipeline" id="pipeline-board">
+        <div class="pipeline-column" data-stage="lead">
+          <h3>Лид</h3>
+          <div class="pipeline-column__cards" id="column-lead"></div>
+        </div>
+        <div class="pipeline-column" data-stage="negotiation">
+          <h3>Переговоры</h3>
+          <div class="pipeline-column__cards" id="column-negotiation"></div>
+        </div>
+        <div class="pipeline-column" data-stage="deal">
+          <h3>Сделка</h3>
+          <div class="pipeline-column__cards" id="column-deal"></div>
+        </div>
+        <div class="pipeline-column" data-stage="done">
+          <h3>Завершено</h3>
+          <div class="pipeline-column__cards" id="column-done"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Задачи -->
+    <section id="section-tasks" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Задачи</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-task">+ Добавить задачу</button>
+      </div>
+      <div class="tasks-list" id="tasks-list"></div>
+    </section>
+
+    <!-- Сотрудники -->
+    <section id="section-employees" class="crm-section">
+      <div class="section-toolbar">
+        <h2>Сотрудники и права доступа</h2>
+        <button type="button" class="btn btn--primary" id="btn-add-employee">+ Добавить сотрудника</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Имя</th>
+              <th>Email</th>
+              <th>Роль</th>
+              <th>Права доступа</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="employees-tbody"></tbody>
+        </table>
+      </div>
+      <div class="roles-help">
+        <h3>Роли</h3>
+        <ul>
+          <li><strong>Администратор</strong> — полный доступ: клиенты, сделки, задачи, сотрудники.</li>
+          <li><strong>Менеджер</strong> — создание и редактирование клиентов, сделок, задач. Без раздела «Сотрудники».</li>
+          <li><strong>Наблюдатель</strong> — только просмотр клиентов, сделок и задач.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- Модалки -->
+  <div id="modal-overlay" class="modal-overlay" aria-hidden="true">
+    <div class="modal">
+      <button type="button" class="modal__close" aria-label="Закрыть">&times;</button>
+      <div id="modal-content"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

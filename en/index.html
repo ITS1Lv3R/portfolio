@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iDev — Web development, bots, CRM, integrations</title>
+  <meta name="description" content="Freelance: websites, Telegram bots, CRM, API integrations, digital assistants">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../lang-redirect.js"></script>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="gradient-orb gradient-orb--1"></div>
+  <div class="gradient-orb gradient-orb--2"></div>
+  <div class="gradient-orb gradient-orb--3"></div>
+
+  <header class="header">
+    <a href="../" class="logo" target="_blank" rel="noopener">iDev</a>
+    <nav class="nav">
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="../crm/en/">CRM</a>
+      <a href="#contact">Contact</a>
+      <a href="https://idev.team/" class="nav-lang" onclick="localStorage.setItem('idev_lang','ru')">RU</a>
+    </nav>
+    <button class="burger" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero__label">Digital services, freelance, outsourcing</p>
+      <h1 class="hero__title">
+        <span class="hero__title-line">Websites,</span>
+        <span class="hero__title-line">bots,</span>
+        <span class="hero__title-line hero__title-line--accent">CRM & integrations</span>
+      </h1>
+      <p class="hero__subtitle">
+        From landing pages to complex systems: web development, Telegram bots, CRM, API integrations, and digital assistants.
+      </p>
+      <div class="hero__cta">
+        <a href="#projects" class="btn btn--primary">View projects</a>
+        <a href="#contact" class="btn btn--ghost">Get in touch</a>
+      </div>
+      <div class="hero__scroll">
+        <span>Scroll down</span>
+        <div class="hero__scroll-line"></div>
+      </div>
+    </section>
+
+    <section id="services" class="section services">
+      <h2 class="section__title">What we do</h2>
+      <div class="services__grid">
+        <article class="service-card" data-tilt>
+          <div class="service-card__icon">◆</div>
+          <h3>Web development</h3>
+          <p>Landing pages, corporate sites, e‑commerce on modern stacks.</p>
+        </article>
+        <article class="service-card" data-tilt>
+          <div class="service-card__icon">▣</div>
+          <h3>Bots</h3>
+          <p>Telegram, VK, messengers: auto-posting, support, automation.</p>
+        </article>
+        <article class="service-card" data-tilt>
+          <div class="service-card__icon">◇</div>
+          <h3>CRM & systems</h3>
+          <p>Internal CRM, dashboards, tracking and reporting for your workflows.</p>
+        </article>
+        <article class="service-card" data-tilt>
+          <div class="service-card__icon">◈</div>
+          <h3>Integrations</h3>
+          <p>API, webhooks, connecting services: ERP, payments, email, warehouse.</p>
+        </article>
+        <article class="service-card" data-tilt>
+          <div class="service-card__icon">◎</div>
+          <h3>Digital assistants</h3>
+          <p>AI chatbots, voice assistants, routine automation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects">
+      <h2 class="section__title">Projects</h2>
+      <p class="section__subtitle">Cases: corporate site, AI bot, integrations with government services and ERP, internal CRM.</p>
+      <div class="projects__grid">
+        <article class="project-card project-card--featured" data-tilt>
+          <div class="project-card__bg"></div>
+          <div class="project-card__content">
+            <span class="project-card__tag">Website</span>
+            <h3>Corporate site iDevelop</h3>
+            <p>Services, benefits, team, company history, careers, FAQ. Lead forms and consultations, responsive, clear B2B structure.</p>
+            <a href="https://i-develop.tech/" target="_blank" rel="noopener noreferrer" class="project-card__link">View site →</a>
+          </div>
+        </article>
+        <article class="project-card" data-tilt>
+          <div class="project-card__bg"></div>
+          <div class="project-card__content">
+            <span class="project-card__tag">AI bot</span>
+            <h3>MyAssistWork — assistant bot</h3>
+            <p>Telegram bot with AI: task help, tips, routine automation in the messenger.</p>
+            <a href="https://t.me/MyAssistWork_Bot" target="_blank" rel="noopener noreferrer" class="project-card__link">Open in Telegram →</a>
+          </div>
+        </article>
+        <article class="project-card" data-tilt>
+          <div class="project-card__bg"></div>
+          <div class="project-card__content">
+            <span class="project-card__tag">CRM</span>
+            <h3>Internal CRM</h3>
+            <p>Client and deal tracking, pipeline, dashboards, tasks and reports. Tailored to your process.</p>
+            <a href="../crm/en/" target="_blank" rel="noopener noreferrer" class="project-card__link">Open demo →</a>
+          </div>
+        </article>
+        <article class="project-card" data-tilt>
+          <div class="project-card__bg"></div>
+          <div class="project-card__content">
+            <span class="project-card__tag">Integrations</span>
+            <h3>Registers, ERP, e-docs</h3>
+            <p>Queries to land/cadastre registers, ERP sync (inventory, orders, docs), payments, labeling — what clients order most.</p>
+            <span class="project-card__link project-card__link--muted">Cases under NDA</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h2 class="section__title">Contact</h2>
+      <p class="contact__text">Let’s discuss your project and timeline. Reach out via messenger or email.</p>
+      <div class="contact__links">
+        <a href="https://t.me/IT_Evgenii_Kuznetsov" target="_blank" rel="noopener noreferrer" class="contact-link" data-tilt>Telegram</a>
+        <a href="mailto:team@i-develop.tech" class="contact-link" data-tilt>Email</a>
+        <a href="https://wa.me/35797653990" target="_blank" rel="noopener noreferrer" class="contact-link" data-tilt>WhatsApp</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 iDev. Built with care.</p>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
