@@ -15,14 +15,23 @@
   const defaultClients = [
     { id: '1', name: 'ООО «Ромашка»', company: 'Ромашка', email: 'info@romashka.ru', phone: '+7 495 111-22-33', createdAt: Date.now() - 86400000 * 5 },
     { id: '2', name: 'Иван Петров', company: 'Фриланс', email: 'ivan@mail.ru', phone: '+7 916 123-45-67', createdAt: Date.now() - 86400000 * 3 },
-    { id: '3', name: 'Анна Сидорова', company: 'Сидор и партнёры', email: 'anna@sidor.ru', phone: '+7 903 777-88-99', createdAt: Date.now() - 86400000 }
+    { id: '3', name: 'Анна Сидорова', company: 'Сидор и партнёры', email: 'anna@sidor.ru', phone: '+7 903 777-88-99', createdAt: Date.now() - 86400000 },
+    { id: '4', name: 'ГК «Альфа»', company: 'Альфа Групп', email: 'contact@alfa.ru', phone: '+7 495 300-10-20', createdAt: Date.now() - 86400000 * 7 },
+    { id: '5', name: 'Сергей Морозов', company: 'ИП Морозов', email: 's.morozov@gmail.com', phone: '+7 926 500-11-22', createdAt: Date.now() - 86400000 * 2 },
+    { id: '6', name: 'ЗАО «Техпром»', company: 'Техпром', email: 'info@tehprom.ru', phone: '+7 812 400-55-66', createdAt: Date.now() - 86400000 * 9 }
   ];
 
   const defaultDeals = [
-    { id: 'd1', clientId: '1', title: 'Разработка сайта', amount: 150000, stage: 'negotiation', createdAt: Date.now() - 86400000 * 2 },
-    { id: 'd2', clientId: '2', title: 'Telegram-бот', amount: 45000, stage: 'lead', createdAt: Date.now() - 86400000 },
-    { id: 'd3', clientId: '3', title: 'Интеграция с 1С', amount: 80000, stage: 'deal', createdAt: Date.now() - 86400000 * 4 },
-    { id: 'd4', clientId: '1', title: 'Поддержка и доработки', amount: 25000, stage: 'done', createdAt: Date.now() - 86400000 * 10 }
+    { id: 'd1', clientId: '2', title: 'Telegram-бот', amount: 45000, stage: 'lead', order: 0, createdAt: Date.now() - 86400000 },
+    { id: 'd2', clientId: '5', title: 'Лендинг под ключ', amount: 35000, stage: 'lead', order: 1, createdAt: Date.now() - 86400000 * 2 },
+    { id: 'd3', clientId: '6', title: 'Аудит и консультация', amount: 15000, stage: 'lead', order: 2, createdAt: Date.now() - 86400000 * 3 },
+    { id: 'd4', clientId: '1', title: 'Разработка сайта', amount: 150000, stage: 'negotiation', order: 0, createdAt: Date.now() - 86400000 * 2 },
+    { id: 'd5', clientId: '4', title: 'CRM под бизнес-процессы', amount: 220000, stage: 'negotiation', order: 1, createdAt: Date.now() - 86400000 * 4 },
+    { id: 'd6', clientId: '5', title: 'Интеграция с AmoCRM', amount: 60000, stage: 'negotiation', order: 2, createdAt: Date.now() - 86400000 * 5 },
+    { id: 'd7', clientId: '3', title: 'Интеграция с 1С', amount: 80000, stage: 'deal', order: 0, createdAt: Date.now() - 86400000 * 4 },
+    { id: 'd8', clientId: '6', title: 'Разработка API', amount: 95000, stage: 'deal', order: 1, createdAt: Date.now() - 86400000 * 6 },
+    { id: 'd9', clientId: '1', title: 'Поддержка и доработки', amount: 25000, stage: 'done', order: 0, createdAt: Date.now() - 86400000 * 10 },
+    { id: 'd10', clientId: '4', title: 'Парсер данных Росреестра', amount: 70000, stage: 'done', order: 1, createdAt: Date.now() - 86400000 * 12 }
   ];
 
   const defaultTasks = [
@@ -410,41 +419,129 @@
     }
   }
 
+  var draggedId = null;
+
+  function getDragAfterElement(container, y) {
+    var cards = Array.from(container.querySelectorAll('.deal-card:not(.is-dragging)'));
+    return cards.reduce(function (closest, card) {
+      var rect = card.getBoundingClientRect();
+      var offset = y - rect.top - rect.height / 2;
+      if (offset < 0 && offset > (closest.offset !== undefined ? closest.offset : -Infinity)) {
+        return { offset: offset, element: card };
+      }
+      return closest;
+    }, {}).element || null;
+  }
+
+  function moveDealStage(dealId, direction) {
+    var d = deals.find(function (x) { return x.id === dealId; });
+    if (!d) return;
+    var idx = STAGES.indexOf(d.stage);
+    var newIdx = idx + direction;
+    if (newIdx < 0 || newIdx >= STAGES.length) return;
+    d.stage = STAGES[newIdx];
+    d.order = 9999;
+    persist();
+  }
+
   function renderPipeline() {
     STAGES.forEach(function (stage) {
       var col = document.getElementById('column-' + stage);
       if (!col) return;
-      var list = deals.filter(function (d) { return d.stage === stage; });
+      var list = deals
+        .filter(function (d) { return d.stage === stage; })
+        .sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+
       col.innerHTML = list.map(function (d) {
         var client = d.clientId ? getClient(d.clientId) : null;
         var clientName = client ? client.name : '—';
         var amount = d.amount ? (d.amount.toLocaleString('ru-RU') + ' ₽') : '—';
-        var options = STAGES.map(function (s) {
-          return '<option value="' + s + '"' + (d.stage === s ? ' selected' : '') + '>' + ({ lead: 'Лид', negotiation: 'Переговоры', deal: 'Сделка', done: 'Завершено' }[s]) + '</option>';
-        }).join('');
         return (
-          '<div class="deal-card" data-deal-id="' + d.id + '">' +
+          '<div class="deal-card" draggable="true" data-deal-id="' + d.id + '">' +
           '<div class="deal-card__title">' + escapeHtml(d.title) + '</div>' +
           '<div class="deal-card__client">' + escapeHtml(clientName) + '</div>' +
           '<div class="deal-card__amount">' + amount + '</div>' +
           '<div class="deal-card__actions">' +
-          '<select class="deal-stage-select" data-deal-id="' + d.id + '">' + options + '</select>' +
           '<button type="button" class="btn btn--ghost btn--small edit-deal" data-id="' + d.id + '">Изм.</button>' +
-          '<button type="button" class="btn btn--ghost btn--small btn--danger delete-deal" data-id="' + d.id + '">×</button>' +
           '</div></div>'
         );
       }).join('');
 
-      col.querySelectorAll('.deal-stage-select').forEach(function (sel) {
-        sel.addEventListener('change', function () {
-          updateDealStage(sel.getAttribute('data-deal-id'), sel.value);
-        });
+      // Arrow buttons
+      col.querySelectorAll('.move-left').forEach(function (btn) {
+        btn.addEventListener('click', function (e) { e.stopPropagation(); moveDealStage(btn.getAttribute('data-id'), -1); });
+      });
+      col.querySelectorAll('.move-right').forEach(function (btn) {
+        btn.addEventListener('click', function (e) { e.stopPropagation(); moveDealStage(btn.getAttribute('data-id'), 1); });
       });
       col.querySelectorAll('.edit-deal').forEach(function (btn) {
         btn.addEventListener('click', function () { editDeal(btn.getAttribute('data-id')); });
       });
       col.querySelectorAll('.delete-deal').forEach(function (btn) {
         btn.addEventListener('click', function () { deleteDeal(btn.getAttribute('data-id')); });
+      });
+
+      // Drag events on cards
+      col.querySelectorAll('.deal-card').forEach(function (card) {
+        card.addEventListener('dragstart', function (e) {
+          draggedId = card.getAttribute('data-deal-id');
+          card.classList.add('is-dragging');
+          e.dataTransfer.effectAllowed = 'move';
+        });
+        card.addEventListener('dragend', function () {
+          card.classList.remove('is-dragging');
+          document.querySelectorAll('.pipeline-column__cards').forEach(function (c) { c.classList.remove('drag-over'); });
+          document.querySelectorAll('.drop-indicator').forEach(function (i) { i.remove(); });
+        });
+      });
+
+      // Drop zone on column
+      col.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        col.classList.add('drag-over');
+        var afterEl = getDragAfterElement(col, e.clientY);
+        var indicator = col.querySelector('.drop-indicator');
+        if (!indicator) {
+          indicator = document.createElement('div');
+          indicator.className = 'drop-indicator';
+        }
+        if (afterEl) col.insertBefore(indicator, afterEl);
+        else col.appendChild(indicator);
+      });
+      col.addEventListener('dragleave', function (e) {
+        if (!col.contains(e.relatedTarget)) {
+          col.classList.remove('drag-over');
+          col.querySelectorAll('.drop-indicator').forEach(function (i) { i.remove(); });
+        }
+      });
+      col.addEventListener('drop', function (e) {
+        e.preventDefault();
+        col.classList.remove('drag-over');
+        col.querySelectorAll('.drop-indicator').forEach(function (i) { i.remove(); });
+        if (!draggedId) return;
+        var newStage = col.closest('.pipeline-column').getAttribute('data-stage');
+        var d = deals.find(function (x) { return x.id === draggedId; });
+        if (!d) return;
+        d.stage = newStage;
+        var afterEl = getDragAfterElement(col, e.clientY);
+        var afterId = afterEl ? afterEl.getAttribute('data-deal-id') : null;
+        var stageDeals = deals
+          .filter(function (x) { return x.stage === newStage && x.id !== draggedId; })
+          .sort(function (a, b) { return (a.order || 0) - (b.order || 0); });
+        var newOrder = [];
+        var inserted = false;
+        stageDeals.forEach(function (x) {
+          if (x.id === afterId) { newOrder.push(draggedId); inserted = true; }
+          newOrder.push(x.id);
+        });
+        if (!inserted) newOrder.push(draggedId);
+        newOrder.forEach(function (id, i) {
+          var x = deals.find(function (x) { return x.id === id; });
+          if (x) x.order = i;
+        });
+        draggedId = null;
+        persist();
       });
     });
   }

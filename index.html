@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>iDev — Разработка сайтов, ботов, CRM, интеграции</title>
+  <title data-i18n="title">iDev — Разработка сайтов, ботов, CRM, интеграции</title>
   <meta name="description" content="Фриланс: разработка сайтов, телеграм-боты, CRM, интеграции, цифровые ассистенты">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <script src="lang-redirect.js"></script>
 </head>
@@ -18,13 +20,13 @@
   <div class="gradient-orb gradient-orb--3"></div>
 
   <header class="header">
-    <a href="./" class="logo" target="_blank" rel="noopener">iDev</a>
+    <a href="./" class="logo" target="_blank" rel="noopener">iDev<span class="logo-dot"></span></a>
     <nav class="nav">
-      <a href="#services">Услуги</a>
-      <a href="#projects">Проекты</a>
-      <a href="crm/">CRM</a>
-      <a href="#contact">Контакты</a>
-      <a href="en/" class="nav-lang" onclick="localStorage.setItem('idev_lang','en')">EN</a>
+      <a href="#services" data-i18n="nav.services">Услуги</a>
+      <a href="#projects" data-i18n="nav.projects">Проекты</a>
+      <a href="crm/" data-i18n="nav.crm" data-href-ru="crm/" data-href-en="crm/en/">CRM</a>
+      <a href="#contact" data-i18n="nav.contact">Контакты</a>
+      <button class="nav-lang" id="lang-toggle" aria-label="Switch language">EN</button>
     </nav>
     <button class="burger" aria-label="Меню">
       <span></span>
@@ -35,114 +37,252 @@
 
   <main>
     <section class="hero">
-      <p class="hero__label">Разработка цифровых сервисов, фриланс, аутсорс</p>
+      <div class="hero-bg-grid"></div>
+      <p class="hero__label" data-i18n="hero.label">Разработка цифровых сервисов, фриланс, аутсорс</p>
       <h1 class="hero__title">
-        <span class="hero__title-line">Сайты,</span>
-        <span class="hero__title-line">боты,</span>
-        <span class="hero__title-line hero__title-line--accent">CRM и интеграции</span>
+        <span class="hero__title-line" data-i18n="hero.title.1">Сайты,</span>
+        <span class="hero__title-line" data-i18n="hero.title.2">боты,</span>
+        <span class="hero__title-line hero__title-line--accent" data-i18n="hero.title.3">CRM и интеграции</span>
       </h1>
-      <p class="hero__subtitle">
+      <p class="hero__subtitle" data-i18n="hero.subtitle">
         От лендинга до сложных систем: веб-разработка, телеграм-боты, CRM, API-интеграции и цифровые ассистенты под ключ.
       </p>
       <div class="hero__cta">
-        <a href="#projects" class="btn btn--primary">Смотреть проекты</a>
-        <a href="#contact" class="btn btn--ghost">Связаться</a>
+        <a href="#projects" class="btn btn--primary" data-i18n="hero.cta1">Смотреть проекты</a>
+        <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Связаться</a>
       </div>
       <div class="hero__scroll">
-        <span>Листай вниз</span>
+        <span data-i18n="hero.scroll">Листай вниз</span>
         <div class="hero__scroll-line"></div>
       </div>
     </section>
 
     <section id="services" class="section services">
-      <h2 class="section__title">Чем занимаемся</h2>
+      <div class="section-header">
+        <div>
+          <div class="section-tag" data-i18n="tag.services">Что делаем</div>
+          <h2 class="section__title" data-i18n="services.title">Чем занимаемся</h2>
+        </div>
+      </div>
       <div class="services__grid">
         <article class="service-card" data-tilt>
+          <div class="service-num">01</div>
           <div class="service-card__icon">◆</div>
-          <h3>Разработка сайтов</h3>
-          <p>Лендинги, корпоративные сайты, интернет-магазины на современных стеках.</p>
+          <h3 data-i18n="svc1.title">Разработка сайтов</h3>
+          <p data-i18n="svc1.desc">Лендинги, корпоративные сайты, интернет-магазины на современных стеках.</p>
+          <span class="service-arrow">↗</span>
         </article>
         <article class="service-card" data-tilt>
+          <div class="service-num">02</div>
           <div class="service-card__icon">▣</div>
-          <h3>Боты</h3>
-          <p>Telegram, VK, мессенджеры: автопостинг, поддержка, автоматизация.</p>
+          <h3 data-i18n="svc2.title">Боты</h3>
+          <p data-i18n="svc2.desc">Telegram, VK, мессенджеры: автопостинг, поддержка, автоматизация.</p>
+          <span class="service-arrow">↗</span>
         </article>
         <article class="service-card" data-tilt>
+          <div class="service-num">03</div>
           <div class="service-card__icon">◇</div>
-          <h3>CRM и системы</h3>
-          <p>Внутренние CRM, дашборды, учёт и отчётность под ваши процессы.</p>
+          <h3 data-i18n="svc3.title">CRM и системы</h3>
+          <p data-i18n="svc3.desc">Внутренние CRM, дашборды, учёт и отчётность под ваши процессы.</p>
+          <span class="service-arrow">↗</span>
         </article>
         <article class="service-card" data-tilt>
+          <div class="service-num">04</div>
           <div class="service-card__icon">◈</div>
-          <h3>Интеграции</h3>
-          <p>API, вебхуки, связка сервисов: 1С, платёжки, почта, склад.</p>
+          <h3 data-i18n="svc4.title">Интеграции</h3>
+          <p data-i18n="svc4.desc">API, вебхуки, связка сервисов: 1С, платёжки, почта, склад.</p>
+          <span class="service-arrow">↗</span>
         </article>
         <article class="service-card" data-tilt>
+          <div class="service-num">05</div>
           <div class="service-card__icon">◎</div>
-          <h3>Цифровые ассистенты</h3>
-          <p>Чат-боты с AI, голосовые помощники, автоматизация рутины.</p>
+          <h3 data-i18n="svc5.title">Цифровые ассистенты</h3>
+          <p data-i18n="svc5.desc">Чат-боты с AI, голосовые помощники, автоматизация рутины.</p>
+          <span class="service-arrow">↗</span>
+        </article>
+        <article class="service-card" data-tilt>
+          <div class="service-num">06</div>
+          <div class="service-card__icon">⬡</div>
+          <h3 data-i18n="svc6.title">Поддержка и доработки</h3>
+          <p data-i18n="svc6.desc">Сопровождение проектов, доработка существующих систем, код-ревью и оптимизация.</p>
+          <span class="service-arrow">↗</span>
         </article>
       </div>
     </section>
 
-    <section id="projects" class="section projects">
-      <h2 class="section__title">Проекты</h2>
-      <p class="section__subtitle">Кейсы: корпоративный сайт, AI-бот, интеграции с госсервисами и 1С, внутренняя CRM.</p>
+
+<section id="projects" class="section projects">
+      <div class="section-tag" data-i18n="tag.projects">Работы</div>
+      <h2 class="section__title" data-i18n="projects.title">Проекты</h2>
+      <p class="section__subtitle" data-i18n="projects.subtitle">Кейсы: корпоративный сайт, AI-бот, интеграции с госсервисами и 1С, внутренняя CRM.</p>
       <div class="projects__grid">
         <article class="project-card project-card--featured" data-tilt>
           <div class="project-card__bg"></div>
           <div class="project-card__content">
-            <span class="project-card__tag">Сайт</span>
-            <h3>Корпоративный сайт iDevelop</h3>
-            <p>Услуги, преимущества, команда, история, вакансии, FAQ. Формы заявок и консультаций, адаптив, понятная структура для B2B.</p>
-            <a href="https://i-develop.tech/" target="_blank" rel="noopener noreferrer" class="project-card__link">Смотреть сайт →</a>
+            <span class="project-card__tag" data-i18n="proj1.tag">Сайт</span>
+            <h3 data-i18n="proj1.title">Корпоративный сайт iDevelop</h3>
+            <p data-i18n="proj1.desc">Услуги, преимущества, команда, история, вакансии, FAQ. Формы заявок и консультаций, адаптив, понятная структура для B2B.</p>
+            <a href="https://i-develop.tech/" target="_blank" rel="noopener noreferrer" class="project-card__link" data-i18n="proj1.link">Смотреть сайт →</a>
           </div>
         </article>
         <article class="project-card" data-tilt>
           <div class="project-card__bg"></div>
           <div class="project-card__content">
-            <span class="project-card__tag">AI-бот</span>
-            <h3>MyAssistWork — бот-ассистент</h3>
-            <p>Telegram-бот с AI: помощь по задачам, подсказки, автоматизация рутины в мессенджере.</p>
-            <a href="https://t.me/MyAssistWork_Bot" target="_blank" rel="noopener noreferrer" class="project-card__link">Открыть в Telegram →</a>
+            <span class="project-card__tag" data-i18n="proj2.tag">AI-бот</span>
+            <h3 data-i18n="proj2.title">MyAssistWork — бот-ассистент</h3>
+            <p data-i18n="proj2.desc">Telegram-бот с AI: помощь по задачам, подсказки, автоматизация рутины в мессенджере.</p>
+            <a href="https://t.me/MyAssistWork_Bot" target="_blank" rel="noopener noreferrer" class="project-card__link" data-i18n="proj2.link">Открыть в Telegram →</a>
           </div>
         </article>
         <article class="project-card" data-tilt>
           <div class="project-card__bg"></div>
           <div class="project-card__content">
-            <span class="project-card__tag">CRM</span>
-            <h3>Внутренняя CRM</h3>
-            <p>Учёт клиентов и сделок, воронка, дашборды, задачи и отчёты. Под процессы заказчика.</p>
-            <a href="crm/" target="_blank" rel="noopener noreferrer" class="project-card__link">Открыть демо →</a>
+            <span class="project-card__tag" data-i18n="proj3.tag">CRM</span>
+            <h3 data-i18n="proj3.title">Внутренняя CRM</h3>
+            <p data-i18n="proj3.desc">Учёт клиентов и сделок, воронка, дашборды, задачи и отчёты. Под процессы заказчика.</p>
+            <a href="crm/" target="_blank" rel="noopener noreferrer" class="project-card__link" data-i18n="proj3.link" data-href-ru="crm/" data-href-en="crm/en/">Открыть демо →</a>
           </div>
         </article>
         <article class="project-card" data-tilt>
           <div class="project-card__bg"></div>
           <div class="project-card__content">
-            <span class="project-card__tag">Интеграции</span>
-            <h3>Росреестр, 1С, ЭДО</h3>
-            <p>Запросы в Росреестр (выписки, сведения), обмен с 1С (остатки, заказы, документы), платёжки, маркировка — что чаще всего заказывают.</p>
-            <span class="project-card__link project-card__link--muted">Кейсы под NDA</span>
+            <span class="project-card__tag" data-i18n="proj4.tag">Интеграции</span>
+            <h3 data-i18n="proj4.title">Росреестр, 1С, ЭДО</h3>
+            <p data-i18n="proj4.desc">Запросы в Росреестр (выписки, сведения), обмен с 1С (остатки, заказы, документы), платёжки, маркировка — что чаще всего заказывают.</p>
+            <span class="project-card__link project-card__link--muted" data-i18n="proj4.link">Кейсы под NDA</span>
           </div>
         </article>
       </div>
     </section>
 
     <section id="contact" class="section contact">
-      <h2 class="section__title">Связаться</h2>
-      <p class="contact__text">Обсудим задачу и сроки. Напишите в удобный мессенджер или на почту.</p>
+      <div class="cta-bg"></div>
+      <div class="section-tag" data-i18n="tag.contact">Контакт</div>
+      <h2 class="section__title" data-i18n="contact.title">Связаться</h2>
+      <p class="contact__text" data-i18n="contact.text">Обсудим задачу и сроки. Напишите в удобный мессенджер или на почту.</p>
       <div class="contact__links">
         <a href="https://t.me/IT_Evgenii_Kuznetsov" target="_blank" rel="noopener noreferrer" class="contact-link" data-tilt>Telegram</a>
-        <a href="mailto:team@i-develop.tech" class="contact-link" data-tilt>Email</a>
-        <a href="https://wa.me/35797653990" target="_blank" rel="noopener noreferrer" class="contact-link" data-tilt>WhatsApp</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>© 2026 iDev. Сделано с вниманием к деталям.</p>
+    <p data-i18n="footer.text">© 2026 iDev. Сделано с вниманием к деталям.</p>
   </footer>
 
+  <a href="https://t.me/IT_Evgenii_Kuznetsov" target="_blank" rel="noopener noreferrer" class="tg-float" aria-label="Telegram">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21.944 3.069L18.65 19.418c-.244 1.072-1.38 1.582-2.243 1.006l-4.647-3.376-2.23 2.12c-.246.234-.568.364-.907.364-.677 0-1.226-.549-1.226-1.226V15.6l-3.52-1.154C2.784 14.1 2.772 12.96 4.085 12.41L20.14 2.195c1.147-.612 2.27.273 1.804 1.874z" fill="white"/>
+    </svg>
+  </a>
+
   <script src="script.js"></script>
+  <script>
+  (function () {
+    var T = {
+      ru: {
+        title: 'iDev — Разработка сайтов, ботов, CRM, интеграции',
+        'meta.desc': 'Фриланс: разработка сайтов, телеграм-боты, CRM, интеграции, цифровые ассистенты',
+        'nav.services': 'Услуги', 'nav.projects': 'Проекты', 'nav.crm': 'CRM', 'nav.contact': 'Контакты',
+        'hero.label': 'Разработка цифровых сервисов, фриланс, аутсорс',
+        'hero.title.1': 'Сайты,', 'hero.title.2': 'боты,', 'hero.title.3': 'CRM и интеграции',
+        'hero.subtitle': 'От лендинга до сложных систем: веб-разработка, телеграм-боты, CRM, API-интеграции и цифровые ассистенты под ключ.',
+        'hero.cta1': 'Смотреть проекты', 'hero.cta2': 'Связаться', 'hero.scroll': 'Листай вниз',
+        'tag.services': 'Что делаем', 'tag.projects': 'Работы', 'tag.contact': 'Контакт',
+        'services.title': 'Чем занимаемся',
+        'svc1.title': 'Разработка сайтов', 'svc1.desc': 'Лендинги, корпоративные сайты, интернет-магазины на современных стеках.',
+        'svc2.title': 'Боты', 'svc2.desc': 'Telegram, VK, мессенджеры: автопостинг, поддержка, автоматизация.',
+        'svc3.title': 'CRM и системы', 'svc3.desc': 'Внутренние CRM, дашборды, учёт и отчётность под ваши процессы.',
+        'svc4.title': 'Интеграции', 'svc4.desc': 'API, вебхуки, связка сервисов: 1С, платёжки, почта, склад.',
+        'svc5.title': 'Цифровые ассистенты', 'svc5.desc': 'Чат-боты с AI, голосовые помощники, автоматизация рутины.',
+        'svc6.title': 'Поддержка и доработки', 'svc6.desc': 'Сопровождение проектов, доработка существующих систем, код-ревью и оптимизация.',
+        'projects.title': 'Проекты',
+        'projects.subtitle': 'Кейсы: корпоративный сайт, AI-бот, интеграции с госсервисами и 1С, внутренняя CRM.',
+        'proj1.tag': 'Сайт', 'proj1.title': 'Корпоративный сайт iDevelop',
+        'proj1.desc': 'Услуги, преимущества, команда, история, вакансии, FAQ. Формы заявок и консультаций, адаптив, понятная структура для B2B.',
+        'proj1.link': 'Смотреть сайт →',
+        'proj2.tag': 'AI-бот', 'proj2.title': 'MyAssistWork — бот-ассистент',
+        'proj2.desc': 'Telegram-бот с AI: помощь по задачам, подсказки, автоматизация рутины в мессенджере.',
+        'proj2.link': 'Открыть в Telegram →',
+        'proj3.tag': 'CRM', 'proj3.title': 'Внутренняя CRM',
+        'proj3.desc': 'Учёт клиентов и сделок, воронка, дашборды, задачи и отчёты. Под процессы заказчика.',
+        'proj3.link': 'Открыть демо →',
+        'proj4.tag': 'Интеграции', 'proj4.title': 'Росреестр, 1С, ЭДО',
+        'proj4.desc': 'Запросы в Росреестр (выписки, сведения), обмен с 1С (остатки, заказы, документы), платёжки, маркировка — что чаще всего заказывают.',
+        'proj4.link': 'Кейсы под NDA',
+        'contact.title': 'Связаться', 'contact.text': 'Обсудим задачу и сроки. Напишите в удобный мессенджер или на почту.',
+        'footer.text': '© 2026 iDev. Сделано с вниманием к деталям.',
+      },
+      en: {
+        title: 'iDev — Web development, bots, CRM, integrations',
+        'meta.desc': 'Freelance: websites, Telegram bots, CRM, API integrations, digital assistants',
+        'nav.services': 'Services', 'nav.projects': 'Projects', 'nav.crm': 'CRM', 'nav.contact': 'Contact',
+        'hero.label': 'Digital services, freelance, outsourcing',
+        'hero.title.1': 'Websites,', 'hero.title.2': 'bots,', 'hero.title.3': 'CRM & integrations',
+        'hero.subtitle': 'From landing pages to complex systems: web development, Telegram bots, CRM, API integrations, and digital assistants.',
+        'hero.cta1': 'View projects', 'hero.cta2': 'Get in touch', 'hero.scroll': 'Scroll down',
+        'tag.services': 'What we do', 'tag.projects': 'Works', 'tag.contact': 'Contact',
+        'services.title': 'What we do',
+        'svc1.title': 'Web development', 'svc1.desc': 'Landing pages, corporate sites, e‑commerce on modern stacks.',
+        'svc2.title': 'Bots', 'svc2.desc': 'Telegram, VK, messengers: auto-posting, support, automation.',
+        'svc3.title': 'CRM & systems', 'svc3.desc': 'Internal CRM, dashboards, tracking and reporting for your workflows.',
+        'svc4.title': 'Integrations', 'svc4.desc': 'API, webhooks, connecting services: ERP, payments, email, warehouse.',
+        'svc5.title': 'Digital assistants', 'svc5.desc': 'AI chatbots, voice assistants, routine automation.',
+        'svc6.title': 'Support & maintenance', 'svc6.desc': 'Project support, improvements to existing systems, code review and optimization.',
+        'projects.title': 'Projects',
+        'projects.subtitle': 'Cases: corporate site, AI bot, integrations with government services and ERP, internal CRM.',
+        'proj1.tag': 'Website', 'proj1.title': 'Corporate site iDevelop',
+        'proj1.desc': 'Services, benefits, team, company history, careers, FAQ. Lead forms and consultations, responsive, clear B2B structure.',
+        'proj1.link': 'View site →',
+        'proj2.tag': 'AI bot', 'proj2.title': 'MyAssistWork — assistant bot',
+        'proj2.desc': 'Telegram bot with AI: task help, tips, routine automation in the messenger.',
+        'proj2.link': 'Open in Telegram →',
+        'proj3.tag': 'CRM', 'proj3.title': 'Internal CRM',
+        'proj3.desc': 'Client and deal tracking, pipeline, dashboards, tasks and reports. Tailored to your process.',
+        'proj3.link': 'Open demo →',
+        'proj4.tag': 'Integrations', 'proj4.title': 'Registers, ERP, e-docs',
+        'proj4.desc': 'Queries to land/cadastre registers, ERP sync (inventory, orders, docs), payments, labeling — what clients order most.',
+        'proj4.link': 'Cases under NDA',
+        'contact.title': 'Contact', 'contact.text': "Let's discuss your project and timeline. Reach out via messenger or email.",
+        'footer.text': '© 2026 iDev. Built with care.',
+      }
+    };
+
+    function applyLang(lang) {
+      var d = T[lang];
+      if (!d) return;
+
+      document.documentElement.lang = lang;
+      if (d.title) document.title = d.title;
+
+      var metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc && d['meta.desc']) metaDesc.setAttribute('content', d['meta.desc']);
+
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (d[key] !== undefined) el.textContent = d[key];
+      });
+
+      document.querySelectorAll('[data-href-' + lang + ']').forEach(function (el) {
+        el.href = el.getAttribute('data-href-' + lang);
+      });
+
+      var toggle = document.getElementById('lang-toggle');
+      if (toggle) toggle.textContent = lang === 'ru' ? 'EN' : 'RU';
+
+      var url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url.toString());
+
+      try { localStorage.setItem('idev_lang', lang); } catch (_) {}
+    }
+
+    applyLang(window.__idevLang || 'ru');
+
+    document.getElementById('lang-toggle').addEventListener('click', function () {
+      applyLang(document.documentElement.lang === 'ru' ? 'en' : 'ru');
+    });
+  })();
+  </script>
 </body>
 </html>
