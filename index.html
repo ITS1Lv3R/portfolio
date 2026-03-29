@@ -4,7 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-i18n="title">iDev — Разработка сайтов, ботов, CRM, интеграции</title>
-  <meta name="description" content="Фриланс: разработка сайтов, телеграм-боты, CRM, интеграции, цифровые ассистенты">
+  <meta name="description" content="Разработка сайтов, Telegram-ботов, CRM и API-интеграций под ключ. Быстро, с гарантией. Фриланс-разработчик — напишите в Telegram.">
+  <link rel="canonical" href="https://idev.team/">
+  <link rel="alternate" hreflang="ru" href="https://idev.team/">
+  <link rel="alternate" hreflang="en" href="https://idev.team/?lang=en">
+  <link rel="alternate" hreflang="x-default" href="https://idev.team/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://idev.team/">
+  <meta property="og:title" content="iDev — Разработка сайтов, ботов, CRM, интеграции">
+  <meta property="og:description" content="Разработка сайтов, Telegram-ботов, CRM и API-интеграций под ключ. Фриланс-разработчик.">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "iDev",
+    "url": "https://idev.team",
+    "description": "Разработка сайтов, телеграм-ботов, CRM, API-интеграций и цифровых ассистентов",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "url": "https://t.me/IT_Evgenii_Kuznetsov"
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -20,11 +45,12 @@
   <div class="gradient-orb gradient-orb--3"></div>
 
   <header class="header">
-    <a href="./" class="logo" target="_blank" rel="noopener">iDev<span class="logo-dot"></span></a>
+    <a href="./" class="logo">iDev<span class="logo-dot"></span></a>
     <nav class="nav">
       <a href="#services" data-i18n="nav.services">Услуги</a>
       <a href="#projects" data-i18n="nav.projects">Проекты</a>
       <a href="crm/" data-i18n="nav.crm" data-href-ru="crm/" data-href-en="crm/en/">CRM</a>
+      <a href="https://demo.hr.idev.team" target="_blank" data-i18n="nav.hr">HR System</a>
       <a href="#contact" data-i18n="nav.contact">Контакты</a>
       <button class="nav-lang" id="lang-toggle" aria-label="Switch language">EN</button>
     </nav>
@@ -116,13 +142,22 @@
       <h2 class="section__title" data-i18n="projects.title">Проекты</h2>
       <p class="section__subtitle" data-i18n="projects.subtitle">Кейсы: корпоративный сайт, AI-бот, интеграции с госсервисами и 1С, внутренняя CRM.</p>
       <div class="projects__grid">
-        <article class="project-card project-card--featured" data-tilt>
+        <article class="project-card" data-tilt>
           <div class="project-card__bg"></div>
           <div class="project-card__content">
             <span class="project-card__tag" data-i18n="proj1.tag">Сайт</span>
             <h3 data-i18n="proj1.title">Корпоративный сайт iDevelop</h3>
             <p data-i18n="proj1.desc">Услуги, преимущества, команда, история, вакансии, FAQ. Формы заявок и консультаций, адаптив, понятная структура для B2B.</p>
             <a href="https://i-develop.tech/" target="_blank" rel="noopener noreferrer" class="project-card__link" data-i18n="proj1.link">Смотреть сайт →</a>
+          </div>
+        </article>
+        <article class="project-card" data-tilt>
+          <div class="project-card__bg"></div>
+          <div class="project-card__content">
+            <span class="project-card__tag" data-i18n="proj5.tag">HR</span>
+            <h3 data-i18n="proj5.title">HR System</h3>
+            <p data-i18n="proj5.desc">Кандидаты, сотрудники, проекты, партнёры, дашборд с аналитикой. Воронка подбора и табели.</p>
+            <a href="https://demo.hr.idev.team" target="_blank" rel="noopener noreferrer" class="project-card__link" data-i18n="proj5.link">Открыть демо →</a>
           </div>
         </article>
         <article class="project-card" data-tilt>
@@ -183,7 +218,7 @@
       ru: {
         title: 'iDev — Разработка сайтов, ботов, CRM, интеграции',
         'meta.desc': 'Фриланс: разработка сайтов, телеграм-боты, CRM, интеграции, цифровые ассистенты',
-        'nav.services': 'Услуги', 'nav.projects': 'Проекты', 'nav.crm': 'CRM', 'nav.contact': 'Контакты',
+        'nav.services': 'Услуги', 'nav.projects': 'Проекты', 'nav.crm': 'CRM', 'nav.hr': 'HR System', 'nav.contact': 'Контакты',
         'hero.label': 'Разработка цифровых сервисов, фриланс, аутсорс',
         'hero.title.1': 'Сайты,', 'hero.title.2': 'боты,', 'hero.title.3': 'CRM и интеграции',
         'hero.subtitle': 'От лендинга до сложных систем: веб-разработка, телеграм-боты, CRM, API-интеграции и цифровые ассистенты под ключ.',
@@ -210,13 +245,16 @@
         'proj4.tag': 'Интеграции', 'proj4.title': 'Росреестр, 1С, ЭДО',
         'proj4.desc': 'Запросы в Росреестр (выписки, сведения), обмен с 1С (остатки, заказы, документы), платёжки, маркировка — что чаще всего заказывают.',
         'proj4.link': 'Кейсы под NDA',
+        'proj5.tag': 'HR', 'proj5.title': 'HR System',
+        'proj5.desc': 'Кандидаты, сотрудники, проекты, партнёры, дашборд с аналитикой. Воронка подбора и табели.',
+        'proj5.link': 'Открыть демо →',
         'contact.title': 'Связаться', 'contact.text': 'Обсудим задачу и сроки. Напишите в удобный мессенджер или на почту.',
         'footer.text': '© 2026 iDev. Сделано с вниманием к деталям.',
       },
       en: {
         title: 'iDev — Web development, bots, CRM, integrations',
         'meta.desc': 'Freelance: websites, Telegram bots, CRM, API integrations, digital assistants',
-        'nav.services': 'Services', 'nav.projects': 'Projects', 'nav.crm': 'CRM', 'nav.contact': 'Contact',
+        'nav.services': 'Services', 'nav.projects': 'Projects', 'nav.crm': 'CRM', 'nav.hr': 'HR System', 'nav.contact': 'Contact',
         'hero.label': 'Digital services, freelance, outsourcing',
         'hero.title.1': 'Websites,', 'hero.title.2': 'bots,', 'hero.title.3': 'CRM & integrations',
         'hero.subtitle': 'From landing pages to complex systems: web development, Telegram bots, CRM, API integrations, and digital assistants.',
@@ -243,6 +281,9 @@
         'proj4.tag': 'Integrations', 'proj4.title': 'Registers, ERP, e-docs',
         'proj4.desc': 'Queries to land/cadastre registers, ERP sync (inventory, orders, docs), payments, labeling — what clients order most.',
         'proj4.link': 'Cases under NDA',
+        'proj5.tag': 'HR', 'proj5.title': 'HR System',
+        'proj5.desc': 'Candidates, employees, projects, partners, analytics dashboard. Recruitment funnel and timesheets.',
+        'proj5.link': 'Open demo →',
         'contact.title': 'Contact', 'contact.text': "Let's discuss your project and timeline. Reach out via messenger or email.",
         'footer.text': '© 2026 iDev. Built with care.',
       }
@@ -270,11 +311,14 @@
       var toggle = document.getElementById('lang-toggle');
       if (toggle) toggle.textContent = lang === 'ru' ? 'EN' : 'RU';
 
-      var url = new URL(window.location.href);
-      url.searchParams.set('lang', lang);
-      history.replaceState(null, '', url.toString());
-
       try { localStorage.setItem('idev_lang', lang); } catch (_) {}
+
+      // Clean ?lang= from URL if present
+      var url = new URL(window.location.href);
+      if (url.searchParams.has('lang')) {
+        url.searchParams.delete('lang');
+        history.replaceState(null, '', url.toString());
+      }
     }
 
     applyLang(window.__idevLang || 'ru');
