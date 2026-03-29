@@ -1,35 +1,73 @@
-# Портфолио фриланс-разработчика
+# idev.team
 
-Одностраничный сайт-портфолио: разработка сайтов, ботов, CRM, интеграции, цифровые ассистенты.
+Portfolio and showcase website for **iDev** (iDevelop IT) — a software development company specializing in web apps, CRM systems, Telegram bots, and integrations.
 
-## Что внутри
+**Live:** [https://idev.team](https://idev.team)
 
-- **index.html** — разметка (hero, услуги, проекты, контакты)
-- **styles.css** — тёмная тема, градиенты, анимации, адаптив
-- **script.js** — появление блоков при скролле, лёгкий 3D-tilt карточек, мобильное меню
+## Tech Stack
 
-## Как смотреть локально
+Static site built with plain HTML + CSS + JavaScript — no frameworks, no build step.
 
-Открой `index.html` в браузере или подними локальный сервер:
+| File | Purpose |
+|------|---------|
+| `index.html` | Main page (Russian) — hero, services, projects, contact |
+| `en/index.html` | English version |
+| `styles.css` | Dark theme, gradients, animations, responsive layout |
+| `script.js` | Scroll reveal, 3D card tilt, mobile menu, language toggle |
+| `lang-redirect.js` | Auto-redirect based on saved language preference |
+| `firebase.json` | Firebase Hosting config (rewrites, security headers) |
+
+## Sections
+
+- **Hero** — company intro with CTA
+- **Services** (6 cards) — web development, CRM, bots, integrations, consulting, support
+- **Projects** (5 cards):
+  - Corporate website
+  - HR System (live demo at [demo.hr.idev.team](https://demo.hr.idev.team))
+  - Bot Assistant ([@MyAssistWork_Bot](https://t.me/MyAssistWork_Bot))
+  - Internal CRM
+  - Integrations (NDA)
+- **Contact** — Telegram request bot
+
+## Navigation
+
+Services | Projects | CRM | HR-система | Contact | Language toggle (RU/EN)
+
+## Internationalization (i18n)
+
+Two full versions: Russian (`/index.html`) and English (`/en/index.html`).
+Language preference is stored in `localStorage` — no URL query params. The `lang-redirect.js` script handles automatic redirect on first visit.
+
+## Telegram
+
+Request bot: [@iDevelop_bot](https://t.me/iDevelop_bot) — forwards inquiries to the owner.
+
+## Hosting
+
+Firebase Hosting (project: `idevteam-601c2`), domain: `idev.team`.
+
+Security headers configured in `firebase.json`:
+- `X-Frame-Options: SAMEORIGIN`
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Permissions-Policy: camera=(), microphone=(), geolocation=()`
+
+## Local Development
+
+No build required. Open `index.html` directly or use any local server:
 
 ```bash
-# Python
 python3 -m http.server 8000
-
-# или npx
+# or
 npx serve .
 ```
 
-Сайт будет на http://localhost:8000
+## Deploy
 
-## Деплой на сервер
+```bash
+firebase deploy --only hosting
+```
 
-Скопируй на сервер папку целиком (или только файлы `index.html`, `styles.css`, `script.js`). Достаточно любого веб-сервера (Nginx, Apache) или хостинга статики — отдельная сборка не нужна.
+## Git Repository
 
-## Что потом поменять
-
-1. **Контакты** — в блоке «Связаться» замени `href="#"` на свои ссылки (Telegram, email, WhatsApp).
-2. **Реальные проекты** — замени карточки в секции «Проекты» на свои кейсы: добавь ссылки, скриншоты, описания.
-3. **Логотип/имя** — в шапке поменяй текст «Portfolio» на своё имя или логотип.
-
-Когда скажешь, куда заливать (домен/сервер), можно подготовить точные шаги под твой хостинг.
+[github.com/ITS1Lv3R/portfolio](https://github.com/ITS1Lv3R/portfolio) (private)
